@@ -17,6 +17,10 @@ class Data_karyawan extends CI_Model {
 		return $this->db->get('karyawan');
 	}
 
+	public function filter($dari, $sampai){
+		return $this->db->query("select * from karyawan where (tgl_berhenti >= '$dari' and tgl_berhenti <= '$sampai') or (tgl_bergabung <= '$sampai' and  tgl_berhenti = '0000-00-00') and (aktif <= 1)");
+	}
+
 	public function insert_data($data, $table){
 		$this->db->insert($table, $data);
 	}
