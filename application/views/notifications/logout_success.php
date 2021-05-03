@@ -8,7 +8,7 @@
 				<span aria-hidden="true">&times;</span>
 				</button>
 				<hr>
-				<p class="lead">Silahkan login lagi untuk kembali mengakses <br>SISFO Akademik Institut Teknologi Padang.</p>
+				<p class="lead">Silahkan login lagi untuk kembali mengakses <br>Sistem Informasi L.A.U.N.D.R.Y</p>
 				<img class="illustration" src="<?php echo base_url().'assets/img/undraw_Login.svg' ?>">
 			</div>
 		</div>

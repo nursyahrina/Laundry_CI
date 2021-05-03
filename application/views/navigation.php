@@ -7,7 +7,7 @@
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex flex-column align-items-center justify-content-center my-3" href="index.html">
+            <a class="sidebar-brand d-flex flex-column align-items-center justify-content-center my-3" href="<?php echo base_url()?>dashboard">
                 <div class="sidebar-brand-icon rotate-n-15">
                     <i class="fas fa-laugh-wink"></i>
                 </div>
@@ -57,10 +57,10 @@
                 <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
                     data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="#">Karyawan</a>
-                        <a class="collapse-item" href="#">Pelanggan</a>
-                        <a class="collapse-item" href="#">Transaksi</a>
-                        <a class="collapse-item" href="#">Pengeluaran</a>
+                        <a class="collapse-item" href="<?php echo base_url()?>karyawan/laporan">Karyawan</a>
+                        <a class="collapse-item" href="<?php echo base_url()?>pelanggan/laporan">Pelanggan</a>
+                        <a class="collapse-item" href="<?php echo base_url()?>transaksi/laporan">Transaksi</a>
+                        <a class="collapse-item" href="<?php echo base_url()?>pengeluaran/laporan">Pengeluaran</a>
                     </div>
                 </div>
             </li>
@@ -68,21 +68,12 @@
             <!-- Divider -->
             <hr class="sidebar-divider">
 
-
-            <!-- Nav Item - Pages Collapse Menu -->
+            <!-- Nav Item - Data Mahasiswa -->
             <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
-                    aria-expanded="true" aria-controls="collapsePages">
-                    <i class="fas fa-fw fa-chart-area"></i>
-                    <span>Grafik</span>
+                <a class="nav-link" href="#" data-toggle="modal" data-target="#logoutModal">
+                    <i class="fas fa-sign-out-alt icon-nav"></i>
+                    <span>Logout</span>
                 </a>
-                <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="#">Pendapatan</a>
-                        <a class="collapse-item" href="#">Pengeluaran</a>
-                        <a class="collapse-item" href="#">Keuntungan</a>
-                    </div>
-                </div>
             </li>
 
             <!-- Divider -->

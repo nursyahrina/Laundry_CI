@@ -13,88 +13,75 @@
                         <div class="col-xl-3 col-md-6 mb-4">
                             <div class="card border-left-primary shadow h-100 py-2">
                                 <div class="card-body">
-                                    <div class="row no-gutters align-items-center">
-                                        <div class="col mr-2">
-                                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                                                Karyawan</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800"><?php echo $n_karyawan ?></div>
-                                        </div>
-                                        <div class="col-auto">
-                                            <i class="fas fa-users fa-2x text-gray-300"></i>
-                                        </div>
-                                    </div>
+                                    <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                        Karyawan</div>
+                                    <div class="h5 mb-0 font-weight-bold text-gray-800"><?php echo $n_karyawan ?></div>
                                 </div>
                             </div>
                         </div>
 
-                        <!-- Number of Rows of Dosen Table -->
-                        <div class="col-xl-6 col-md-12 mb-4">
-                            <div class="card border-left-success shadow h-100 py-2">
+                        <!-- Number of Rows of Pelanggan Table -->
+                        <div class="col-xl-3 col-md-6 mb-4">
+                            <div class="card border-left-primary shadow h-100 py-2">
                                 <div class="card-body">
-                                    <div class="row no-gutters align-items-center">
-                                        <div class="col mr-2">
-                                            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                                                Pelanggan</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800"><?php echo $n_pelanggan ?></div>
-                                        </div>
-                                        <div class="col-auto">
-                                            <i class="fas fa-chalkboard-teacher fa-2x text-gray-300"></i>
-                                        </div>
-                                    </div>
+                                    <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                        Pelanggan</div>
+                                    <div class="h5 mb-0 font-weight-bold text-gray-800"><?php echo $n_pelanggan ?></div>
                                 </div>
                             </div>
                         </div>
 
-                        <!-- Number of Rows of KRS Table -->
-                        <div class="col-xl-6 col-md-12 mb-4">
-                            <div class="card border-left-info shadow h-100 py-2">
+                        <!-- Number of Rows of Transaksi Table -->
+                        <div class="col-xl-3 col-md-6 mb-4">
+                            <div class="card border-left-primary shadow h-100 py-2">
                                 <div class="card-body">
-                                    <div class="row no-gutters align-items-center">
-                                        <div class="col mr-2">
-                                            <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Mata Kuliah
-                                            </div>
-                                            <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800"><?php echo $n_matakuliah ?></div>
-                                        </div>
-                                        <div class="col-auto">
-                                            <i class="fas fa-book fa-2x text-gray-300"></i>
-                                        </div>
-                                    </div>
+                                    <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                        Transaksi</div>
+                                    <div class="h5 mb-0 font-weight-bold text-gray-800"><?php echo $n_transaksi ?></div>
                                 </div>
                             </div>
                         </div>
 
-                        <!-- Number of Rows of TA Table -->
-                        <div class="col-xl-6 col-md-12 mb-4">
+                        <!-- Number of Rows of Transaksi Aktif Table -->
+                        <div class="col-xl-3 col-md-6 mb-4">
                             <div class="card border-left-warning shadow h-100 py-2">
                                 <div class="card-body">
-                                    <div class="row no-gutters align-items-center">
-                                        <div class="col mr-2">
-                                            <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
-                                                KRS</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800"><?php echo $n_krs ?></div>
-                                        </div>
-                                        <div class="col-auto">
-                                            <i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
-                                        </div>
-                                    </div>
+                                    <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
+                                        Transaksi Belum Selesai</div>
+                                    <div class="h5 mb-0 font-weight-bold text-gray-800"><?php echo $n_transaksi_aktif ?></div>
                                 </div>
                             </div>
                         </div>
 
-                        <!-- Number of Rows of MataKuliah Table -->
-                        <div class="col-xl-6 col-md-12 mb-4">
+                        <!-- Total Pendapatan (Tahun ini) -->
+                        <div class="col-xl-4 col-md-6 mb-4">
+                            <div class="card border-left-success shadow h-100 py-2">
+                                <div class="card-body">
+                                    <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                                        Pendapatan (Tahun ini)</div>
+                                    <div class="h5 mb-0 font-weight-bold text-gray-800">Rp <?php echo $total_pendapatan ?></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Total Pengeluaran (Tahun ini) -->
+                        <div class="col-xl-4 col-md-6 mb-4">
                             <div class="card border-left-danger shadow h-100 py-2">
                                 <div class="card-body">
-                                    <div class="row no-gutters align-items-center">
-                                        <div class="col mr-2">
-                                            <div class="text-xs font-weight-bold text-danger text-uppercase mb-1">
-                                                Tahun Akademik</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800"><?php echo $n_ta ?></div>
-                                        </div>
-                                        <div class="col-auto">
-                                            <i class="fas fa-calendar fa-2x text-gray-300"></i>
-                                        </div>
-                                    </div>
+                                    <div class="text-xs font-weight-bold text-danger text-uppercase mb-1">
+                                        Pengeluaran (Tahun ini)</div>
+                                    <div class="h5 mb-0 font-weight-bold text-gray-800">Rp <?php echo $total_pengeluaran ?></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Total Keuntungan (Tahun ini) -->
+                        <div class="col-xl-4 col-md-6 mb-4">
+                            <div class="card border-left-info shadow h-100 py-2">
+                                <div class="card-body">
+                                    <div class="text-xs font-weight-bold text-info text-uppercase mb-1">
+                                        Keuntungan (Tahun ini)</div>
+                                    <div class="h5 mb-0 font-weight-bold text-gray-800">Rp <?php echo $total_keuntungan ?></div>
                                 </div>
                             </div>
                         </div>

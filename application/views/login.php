@@ -40,7 +40,7 @@
                                 <hr class="pt-3">
                                 <button href="#" class="btn btn-primary btn-user btn-block" type="submit">
                                     Login
-                                ></button>
+                                </button>
                             </form>
                         </div>
                     </div>
