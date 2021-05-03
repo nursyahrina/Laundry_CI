@@ -9,6 +9,7 @@ class Pelanggan extends CI_Controller {
 		if ($this->session->userdata('status') != "login") {
 			redirect(base_url().'welcome?pesan=belumlogin');
 		}
+		$this->load->library('form_validation');
 		$this->load->model('data_pelanggan');
 	}
 
@@ -102,31 +103,59 @@ class Pelanggan extends CI_Controller {
 		$this->load->view('source');
 	}
 
-	function print(){	
-		$angkatan = $this->input->post('angkatan');
+	public function laporan()
+	{
+		$user['username'] = $this->session->userdata('username');
+		$this->load->view('header');
+		$this->load->view('navigation', $user);
+		$this->load->view('laporan/laporan_filter_pelanggan');
+		$this->load->view('footer');
+		$this->load->view('source');
+	}
 
-		$data['angkatan'] = $angkatan;
+	public function laporan_filter()
+	{
+		$user['username'] = $this->session->userdata('username');
+		
+		$jeniskelamin = $this->input->post('jeniskelamin');
 
-		if ($angkatan === 'all') {
-			$data['data_pelanggan'] = $this->db->query("select * from pelanggan")->result();
+		if ($jeniskelamin == "Semua") {
+			$data['data_pelanggan'] = $this->data_pelanggan->get_data()->result();
 		} else {
-			$data['data_pelanggan'] = $this->db->query("select * from pelanggan where pelanggan_id like '$angkatan%'")->result();
+			$data['data_pelanggan'] = $this->db->query("select * from pelanggan where jeniskelamin = '$jeniskelamin'")->result();
+		}
+
+		$this->load->view('header');
+		$this->load->view('navigation', $user);
+		$this->load->view('laporan/laporan_pelanggan', $data);
+		$this->load->view('footer');
+		$this->load->view('source');
+	}
+
+	function print() {	
+
+		$jeniskelamin = $this->uri->segment('3');
+
+		$data['jeniskelamin'] = $jeniskelamin;
+		if ($jeniskelamin == "Semua") {
+			$data['data_pelanggan'] = $this->data_pelanggan->get_data()->result();
+		} else {
+			$data['data_pelanggan'] = $this->db->query("select * from pelanggan where jeniskelamin = '$jeniskelamin'")->result();
 		}
 		
 		$this->load->view('print/pelanggan', $data);
 	}
 
-	function cetak_pdf(){
+	function cetak_pdf() {
 		$this->load->library('dompdf_gen');
 		
-		$angkatan = $this->input->post('angkatan');
+		$jeniskelamin = $this->uri->segment('3');
 
-		$data['angkatan'] = $angkatan;
-
-		if ($angkatan === 'all') {
-			$data['data_pelanggan'] = $this->db->query("select * from pelanggan")->result();
+		$data['jeniskelamin'] = $jeniskelamin;
+		if ($jeniskelamin == "Semua") {
+			$data['data_pelanggan'] = $this->data_pelanggan->get_data()->result();
 		} else {
-			$data['data_pelanggan'] = $this->db->query("select * from pelanggan where pelanggan_id like '$angkatan%'")->result();
+			$data['data_pelanggan'] = $this->db->query("select * from pelanggan where jeniskelamin = '$jeniskelamin'")->result();
 		}
 		
 		$this->load->view('pdf/pelanggan', $data);

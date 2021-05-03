@@ -8,7 +8,8 @@ class Karyawan extends CI_Controller {
 		// cek sesi login
 		if ($this->session->userdata('status') != "login") {
 			redirect(base_url().'welcome?pesan=belumlogin');
-		}
+		};
+		$this->load->library('form_validation');
 		$this->load->model('data_karyawan');
 	}
 
@@ -37,6 +38,12 @@ class Karyawan extends CI_Controller {
 		$tgl_bergabung = $this->input->post('tgl_bergabung');
 		$tgl_berhenti = $this->input->post('tgl_berhenti');
 
+		$aktif = 0;
+
+		if ($tgl_berhenti == null) {
+			$aktif = 1;
+		}
+
 		$this->load->view('header');
 
 		$records = $this->data_karyawan->get_records($karyawan_id)->result();
@@ -49,7 +56,8 @@ class Karyawan extends CI_Controller {
 				'no_hp' => $no_hp,
 				'gaji_perbulan' => $gaji_perbulan,
 				'tgl_bergabung' => $tgl_bergabung,
-				'tgl_berhenti' => $tgl_berhenti
+				'tgl_berhenti' => $tgl_berhenti,
+				'aktif' => $aktif
 			);
 			$action = $this->data_karyawan->insert_data($data,'karyawan');
 			$this->load->view('notifications/insert_success', $info);	
@@ -73,6 +81,12 @@ class Karyawan extends CI_Controller {
 		$tgl_bergabung = $this->input->post('tgl_bergabung');
 		$tgl_berhenti = $this->input->post('tgl_berhenti');
 
+		$aktif = 0;
+
+		if ($tgl_berhenti == null) {
+			$aktif = 1;
+		}
+
 		$this->load->view('header');
 
 		$data = array(
@@ -83,7 +97,8 @@ class Karyawan extends CI_Controller {
 			'no_hp' => $no_hp,
 			'gaji_perbulan' => $gaji_perbulan,
 			'tgl_bergabung' => $tgl_bergabung,
-			'tgl_berhenti' => $tgl_berhenti
+			'tgl_berhenti' => $tgl_berhenti,
+			'aktif' => $aktif
 		);
 		$action = $this->data_karyawan->update_data($karyawan_id, $data,'karyawan');
 
@@ -114,32 +129,53 @@ class Karyawan extends CI_Controller {
 		$this->load->view('source');
 	}
 
-	function print(){	
-		$angkatan = $this->input->post('angkatan');
+	public function laporan()
+	{
+		$user['username'] = $this->session->userdata('username');
+		$this->load->view('header');
+		$this->load->view('navigation', $user);
+		$this->load->view('laporan/laporan_filter_karyawan');
+		$this->load->view('footer');
+		$this->load->view('source');
+	}
 
-		$data['angkatan'] = $angkatan;
+	public function laporan_filter()
+	{
+		$user['username'] = $this->session->userdata('username');
 
-		if ($angkatan === 'all') {
-			$data['data_karyawan'] = $this->db->query("select * from karyawan")->result();
-		} else {
-			$data['data_karyawan'] = $this->db->query("select * from karyawan where karyawan_id like '$angkatan%'")->result();
-		}
+		$dari = $this->input->post('dari');
+		$sampai = $this->input->post('sampai');
+
+		$data['data_karyawan'] = $this->data_karyawan->filter($dari, $sampai)->result();
+
+		$this->load->view('header');
+		$this->load->view('navigation', $user);
+		$this->load->view('laporan/laporan_karyawan', $data);
+		$this->load->view('footer');
+		$this->load->view('source');
+	}
+
+	function print() {	
+
+		$dari = $this->uri->segment('3');
+		$sampai = $this->uri->segment('4');
+
+		$data['dari'] = $dari;
+		$data['sampai'] = $sampai;
+		$data['data_karyawan'] = $this->data_karyawan->filter($dari, $sampai)->result();
 		
 		$this->load->view('print/karyawan', $data);
 	}
 
-	function cetak_pdf(){
+	function cetak_pdf() {
 		$this->load->library('dompdf_gen');
 		
-		$angkatan = $this->input->post('angkatan');
+		$dari = $this->uri->segment('3');
+		$sampai = $this->uri->segment('4');
 
-		$data['angkatan'] = $angkatan;
-
-		if ($angkatan === 'all') {
-			$data['data_karyawan'] = $this->db->query("select * from karyawan")->result();
-		} else {
-			$data['data_karyawan'] = $this->db->query("select * from karyawan where karyawan_id like '$angkatan%'")->result();
-		}
+		$data['dari'] = $dari;
+		$data['sampai'] = $sampai;
+		$data['data_karyawan'] = $this->data_karyawan->filter($dari, $sampai)->result();
 		
 		$this->load->view('pdf/karyawan', $data);
 		

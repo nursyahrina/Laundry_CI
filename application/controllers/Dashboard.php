@@ -11,20 +11,25 @@ class Dashboard extends CI_Controller {
 		}
 		$this->load->model('data_karyawan');
 		$this->load->model('data_pelanggan');
-		/*$this->load->model('data_matakuliah');
-		$this->load->model('data_krs');
-		$this->load->model('data_tahun_akademik');*/
+		$this->load->model('data_transaksi');
+		$this->load->model('data_pengeluaran');
 	}
 
 	public function index()
 	{
 		$user['username'] = $this->session->userdata('username');
+
+		$total_pendapatan = $this->data_transaksi->total_income_year();
+		$total_pengeluaran = $this->data_pengeluaran->total_spend_year();
+		$total_keuntungan = $total_pendapatan - $total_pengeluaran;
 		$data = array(
 					'n_karyawan' => $this->data_karyawan->count_rows(),
-					'n_pelanggan' => $this->data_pelanggan->count_rows()/*,
-					'n_matakuliah' => $this->data_matakuliah->count_rows(),
-					'n_krs' => $this->data_krs->count_rows(),
-					'n_ta' => $this->data_tahun_akademik->count_rows()*/
+					'n_pelanggan' => $this->data_pelanggan->count_rows(),
+					'n_transaksi' => $this->data_transaksi->count_rows(),
+					'n_transaksi_aktif' => $this->data_transaksi->count_active(),
+					'total_pendapatan' => $total_pendapatan ,
+					'total_pengeluaran' => $total_pengeluaran,
+					'total_keuntungan' => $total_keuntungan
 				);
 
 		$this->load->view('header');
